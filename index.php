@@ -39,7 +39,7 @@
 				// clearing the message
 				unset($_SESSION['message']);
 			?>
-                        <form action="login_query.php" method="POST">
+                        <form action="./process/login_query.php" method="POST">
                             <input class="form-control" type="text" name="username" placeholder="username" required>
                             <input class="form-control" type="password" name="password" placeholder="Password" required>
                             <div class="form-button">

@@ -24,7 +24,7 @@
                     <div class="form-items">
                         <h3>Register new account</h3>
                         <p>Access to the most powerfull tool in the entire design and web industry.</p>
-                        <form action="register_query.php" method="POST">
+                        <form action="./process/register_query.php" method="POST">
                             <input class="form-control" type="text" name="firstname" placeholder="First Name" required>
                             <input class="form-control" type="text" name="lastname" placeholder="Last Name" required>
                             <input class="form-control" type="text" name="username" placeholder="Username" required>

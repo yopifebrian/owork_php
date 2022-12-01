@@ -31,22 +31,32 @@ require_once('conn.php');
     $file_size = $_FILES['file']['size'];
     $file_type = $_FILES['file']['type'];
     $lokasi         = '';
+
     $date_uploaded=date("Y-m-d");
     $location="upload/".$file_name;
+    $data[] = $file_name;
+    $data[] = $file_type;
+    $data[] = $date_uploaded;
+    $data[] = $location;
+    $data[] = $id;
 
-    $sql = "SELECT *FROM profile WHERE mem_id= ?";
+    if (move_uploaded_file($_FILES["file"]["tmp_name"], $location)) {
+        $lokasi = $location;
+}
+
+    $sql = "SELECT *FROM file WHERE mem_id= ?";
 	$row = $conn->prepare($sql);
 	$row->execute(array($id));
 	$hasil = $row->fetch();
 
-    if(strlen($hasil['foto']) && $_FILES["file"]["name"] != "")
-        unlink($hasil['foto']);
+    if(strlen($hasil['lokasi']) && $_FILES["file"]["name"] != "")
+        unlink($hasil['lokasi']);
 
     if($file_size < 5242880){
         if(move_uploaded_file($file_temp, $location)){
             try{
                 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                $sql = 'UPDATE profile SET email=?,phone=?,country=?,porto1=? WHERE mem_id=?';
+                $sql = 'UPDATE file SET file_name=?,file_type=?,date_uploaded=?,location=? WHERE mem_id=?';
                 $row = $conn->prepare($sql);
                 $row->execute($data);
             }catch(PDOException $e){
