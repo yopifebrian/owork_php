@@ -1,6 +1,6 @@
 
 <?php
-include "conn.php";
+include "./conn.php";
    
 if(isset($_POST['job'])) {
     $mem_id = $_POST['mem_id'];
@@ -33,7 +33,7 @@ if(isset($_POST['job'])) {
         $porto1 = $_POST['porto1'];
         $porto2 = $_POST['porto2'];
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "INSERT INTO `profile`(mem_id,email,phone,country,linkedin,porto1,porto2	) VALUES ('$mem_id', '$email', '$phone', '$country','$linkedin', '$porto1','$porto2')";
+        $sql = "UPDATE profile SET email = '$email',phone = $phone,country = '$country', linkedin = '$linkedin',porto1 = '$porto1',porto2 = '$porto2' WHERE mem_id= $mem_id";
         $conn->exec($sql);
         $conn = null;
         header("location: home.php");

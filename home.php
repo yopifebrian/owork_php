@@ -6,7 +6,6 @@
 			<div class="row">
 				 <div class="col-lg-12">
 				 <br/>
-				 <a href="tambah.php" class="btn btn-success btn-md"><span class="fa fa-plus"></span> Tambah</a>
 				 <table class="table table-hover table-bordered" style="margin-top: 10px">
 					<tr class="success">
 						<th width="50px">No</th>
@@ -61,6 +60,7 @@
 							<th>File Type</th>
 							<th>Date Uploaded</th>
 							<th>File Path</th>
+							<th>Action</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -77,6 +77,13 @@
 							<td><?php echo $fetch['file_type']?></td>
 							<td><?php echo $fetch['date_uploaded']?></td>
 							<td><?php echo $fetch['location']?></td>
+							<td>
+								<a href="<?php echo $fetch['location'];?>" class="btn btn-success btn-md">
+							<span class="fa fa-eye"></span></a>
+							<a href="edit_file?id=<?php echo $fetch['mem_id'];?>" class="btn btn-success btn-md">
+							<span class="fa fa-upload"></span></a>
+						</td>
+
 						</tr>
  
 						<?php

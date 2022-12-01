@@ -1,4 +1,5 @@
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<!DOCTYPE html>
+<head>
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	</head>
 	<body>
@@ -19,7 +20,7 @@
 						<th style="text-align: center;">Actions</th>
 					</tr>
 					 <?php
-					 	require_once "conn.php";
+					 	require_once "./process/conn.php";
 						$sql = "SELECT * FROM profile";
 						$row = $conn->prepare($sql);
 						$row->execute();
