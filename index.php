@@ -1,12 +1,13 @@
 <?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
-<?php require_once 'views/partials/title-meta.php'
+<?php require_once 'views/partials/title-meta.php';
+require_once 'process/login_query.php'
     ?>
 
 <body>
     <h3>Login to account</h3>
-    <p>Access to the most powerfull tool in the entire design and web industry.</p>
+    <p>Selamat datang di o-work</p>
     <?php if (isset($_SESSION['message'])): ?>
     <div class="alert alert-<?php echo $_SESSION['message']['alert'] ?> msg">
         <?php echo $_SESSION['message']['text'] ?>
@@ -24,15 +25,15 @@
     // clearing the message
     unset($_SESSION['message']);
     ?>
-    <form action="./process/login_query.php" method="POST">
-        <input class="form-control" type="text" name="username" placeholder="username" required>
-        <input class="form-control" type="password" name="password" placeholder="Password" required>
-        <div class="form-button">
-            <button id="submit" name="login" class="ibtn">Login</button>
-        </div>
+    <form method="POST">
+        <input type="email" name="email" placeholder="Enter your email" required><br>
+        <input type="password" name="password" placeholder="Password" required> <br>
+        <button name="login" type="submit">Sign In</button>
     </form>
     <br>
-    <a href="/views/general/register.php">Register new account</a>
+    <a href="<?php echo $_SERVER['REQUEST_URI']?>/views/general/register.php">Register new account</a>
+    <br><br>
+    <?php
+    include 'views/partials/footer.php'
+    ?>
 </body>
-
-</html>

@@ -2,55 +2,50 @@
 session_start();
 require_once 'conn.php';
 
-if ($_POST['firstname'] != "" || $_POST['username'] != "" || $_POST['password'] != "") {
+if (isset($_POST['register'])) {
 	try {
-		$firstname = $_POST['firstname'];
-		$lastname = $_POST['lastname'];
-		$username = $_POST['username'];
-		// md5 encrypted
-		// $password = md5($_POST['password']);
-		$password = $_POST['password'];
 		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		$sql = "INSERT INTO `member` VALUES ('', '$firstname', '$lastname', '$username', '$password')";
-		$conn->exec($sql);
+		$email = trim($_POST['email']);
+		$password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+		$role = $_POST['role'];
+		//Check if email exists
+		$sql = "SELECT COUNT(email) AS em FROM user WHERE email =:email";
+		$stmt = $conn->prepare($sql);
+
+		$stmt->bindValue(':email', $email);
+		$stmt->execute();
+		$row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+		if ($row['em'] > 0) {
+			echo '<script>alert("Email already exists")</script>';
+		} else {
+
+			$stmt = $conn->prepare("INSERT INTO user (email, password, role) VALUES (:email, :password, :role)");
+			$stmt->bindParam(':role', $role);
+			$stmt->bindParam(':email', $email);
+			$stmt->bindParam(':password', $password);
+
+
+
+			if ($stmt->execute()) {
+				echo '<script>alert("New account created.")</script>';
+				//redirect to another page
+				$_SESSION['message'] = array("text" => "User successfully created.", "alert" => "info");
+				$conn = null;
+				echo '<script>window.location.replace("../../index.php")</script>';
+
+			} else {
+				echo '<script>alert("An error occurred")</script>';
+			}
+		}
 	} catch (PDOException $e) {
-		echo $e->getMessage();
+		$error = "Error: " . $e->getMessage();
+		echo '<script type="text/javascript">alert("' . $error . '");</script>';
 	}
-	$_SESSION['message'] = array("text" => "User successfully created.", "alert" => "info");
-	$conn = null;
-	header('location:index.php');
-} else {
-	echo "<script>alert('Please fill up the required field!')</script>
-		<script>window.location = 'register.php'</script>";
-}
-?>
-
-
-<?php
-// define variables and set to empty values
-$passErr = $emailErr = "";
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-	if (empty($_POST["name"])) {
-		$nameErr = "Name is required";
-	} else {
-		$name = test_input($_POST["name"]);
-	}
-
-	if (empty($_POST["email"])) {
-		$emailErr = "Email is required";
-	} else {
-		$email = test_input($_POST["email"]);
-	}
-
-
 }
 
-function test_input($data)
-{
-	$data = trim($data);
-	$data = stripslashes($data);
-	$data = htmlspecialchars($data);
-	return $data;
-}
+
+
+
+$_SESSION['message'] = array("text" => "User successfully created.", "alert" => "info");
 ?>
