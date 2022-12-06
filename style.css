@@ -1,0 +1,124 @@
+html,body{
+    font-family: "Fira Mono", serif;
+    background-color: #F8F8F2;
+  }
+  
+  .container {
+    margin : 0px;
+      display :flex;
+    background-color: #282A36;
+
+  }
+  
+  .container > div {
+      padding: 20px;
+      text-align: center;
+      color: #fff;
+      
+  }
+  
+  .content-container {
+    margin: 75px 75px 25px 75px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .content-container > div {
+  
+      padding: 10px;
+      color: black;
+    
+    
+  }
+  
+  .content-container > div > div {
+  
+      padding: 10px;
+      color: black;
+    
+    
+  }
+  
+  .content-title {
+    font-size: 2em
+  }
+  
+  .sort {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+  
+  .content-container > div > input {
+  
+      padding: 10px;
+      color: black;
+  }
+  
+  input {
+    font-family: "Fira Mono", serif;
+    font-size: 1em;
+  }
+  
+  select {
+    font-family: "Fira Mono", serif;
+  }
+  
+  #jobtable {
+    font-family: "Fira Mono", serif;
+    border-collapse: collapse;
+    width: 100%;
+    color: black;
+    background-color: white;}
+  
+  #jobtable td, #jobtable th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  #jobtable th {
+    color: white;
+    background-color: #282A36;
+  }
+  
+  .hover-underline-animation {
+      display: inline-block;
+      position: relative;
+      color: white;
+    }
+    
+    .hover-underline-animation::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      transform: scaleX(0);
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: #ffffff;
+      transform-origin: bottom right;
+      transition: transform 0.25s ease-out;
+    }
+    
+    .hover-underline-animation:hover::after {
+      transform: scaleX(1);
+      transform-origin: bottom left;
+    }
+  
+  .key {
+  
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  
+  }
+  
+  .key > div {
+    padding: 15px;
+  }
+  
+  .job-page {
+    margin: 100px 100px 25px 100px;
+    
+  }
