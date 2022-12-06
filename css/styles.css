@@ -1,20 +1,22 @@
-html,
-body {
+html,body{
   font-family: "Fira Mono", serif;
-  background-color: #f8f8f2;
+  background-color: #F8F8F2;
+  margin: 0px;
 }
 
 .container {
-  margin: 0px;
-  display: flex;
-  background-color: #282a36;
+  margin : 0px;
+    display :flex;
+  background-color: #282A36;
+  width: 100%;
+
 }
 
 .container > div {
-  padding: 20px;
-  text-align: center;
-  color: #fff;
-  width: auto;
+    padding: 20px;
+    text-align: center;
+    color: #fff;
+    
 }
 
 .content-container {
@@ -25,17 +27,23 @@ body {
 }
 
 .content-container > div {
-  padding: 10px;
-  color: black;
+
+    padding: 10px;
+    color: black;
+  
+  
 }
 
 .content-container > div > div {
-  padding: 10px;
-  color: black;
+
+    padding: 10px;
+    color: black;
+  
+  
 }
 
 .content-title {
-  font-size: 2em;
+  font-size: 2em
 }
 
 .sort {
@@ -45,8 +53,9 @@ body {
 }
 
 .content-container > div > input {
-  padding: 10px;
-  color: black;
+
+    padding: 10px;
+    color: black;
 }
 
 input {
@@ -58,53 +67,57 @@ select {
   font-family: "Fira Mono", serif;
 }
 
+/* Table */
+
 #jobtable {
   font-family: "Fira Mono", serif;
   border-collapse: collapse;
   width: 100%;
   color: black;
-  background-color: white;
-}
+  background-color: white;}
 
-#jobtable td,
-#jobtable th {
+#jobtable td, #jobtable th {
   border: 1px solid #ddd;
   padding: 8px;
 }
 
 #jobtable th {
   color: white;
-  background-color: #282a36;
+  background-color: #282A36;
 }
 
+/* Hover animation */
 .hover-underline-animation {
-  display: inline-block;
-  position: relative;
-  color: white;
-}
+    display: inline-block;
+    position: relative;
+    color: white;
+  }
+  
+  .hover-underline-animation::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #ffffff;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+  }
+  
+  .hover-underline-animation:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
 
-.hover-underline-animation::after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  transform: scaleX(0);
-  height: 2px;
-  bottom: 0;
-  left: 0;
-  background-color: #ffffff;
-  transform-origin: bottom right;
-  transition: transform 0.25s ease-out;
-}
-
-.hover-underline-animation:hover::after {
-  transform: scaleX(1);
-  transform-origin: bottom left;
-}
-
+/* Job Page */
 .key {
+
   display: flex;
   flex-direction: row;
   justify-content: center;
+
 }
 
 .key > div {
@@ -113,6 +126,7 @@ select {
 
 .job-page {
   margin: 100px 100px 25px 100px;
+  
 }
 
 /* START LOGIN AND REGISTER */
