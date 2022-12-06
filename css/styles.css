@@ -189,8 +189,8 @@ button[type="submit"]:focus{
 }
 .or{
 	position: absolute;
-    top: 292px;
-    left: 594px;
+  top: 327px;
+  left: 656px;
 	width: 40px;
 	height: 40px;
 	background: #efefef;
