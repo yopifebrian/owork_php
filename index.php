@@ -1,7 +1,8 @@
 <?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
-<?php require_once 'views/partials/title-meta.php';
+<?php 
+require_once 'views/partials/title-meta.php';
 require_once 'process/login_query.php'
     ?>
 
@@ -31,7 +32,7 @@ require_once 'process/login_query.php'
         <button name="login" type="submit">Sign In</button>
     </form>
     <br>
-    <a href="<?php echo $_SERVER['REQUEST_URI']?>/views/general/register.php">Register new account</a>
+    <a href="<?php echo $base_url?>views/general/register.php">Register new account</a>
     <br><br>
     <?php
     include 'views/partials/footer.php'

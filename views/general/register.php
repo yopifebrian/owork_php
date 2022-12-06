@@ -5,6 +5,7 @@ require_once "../../process/register_query.php";
 ?>
 
 <body>
+  <h3>Register</h3>
   <form method="POST">
     <input type="email" name="email" placeholder="Email" required />
     <br />
