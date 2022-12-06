@@ -5,11 +5,11 @@
 require_once 'views/partials/title-meta.php';
 require_once 'process/login_query.php'
     ?>
-
 <body>
-    <h3>Login to account</h3>
-    <p>Selamat datang di o-work</p>
-    <?php if (isset($_SESSION['message'])): ?>
+	<div id="login-box">
+	<div class="left-box">
+		<h1> Login </h1>
+        <?php if (isset($_SESSION['message'])): ?>
     <div class="alert alert-<?php echo $_SESSION['message']['alert'] ?> msg">
         <?php echo $_SESSION['message']['text'] ?>
     </div>
@@ -26,15 +26,24 @@ require_once 'process/login_query.php'
     // clearing the message
     unset($_SESSION['message']);
     ?>
-    <form method="POST">
-        <input type="email" name="email" placeholder="Enter your email" required><br>
-        <input type="password" name="password" placeholder="Password" required> <br>
-        <button name="login" type="submit">Sign In</button>
-    </form>
-    <br>
-    <a href="<?php echo $base_url?>views/general/register.php">Register new account</a>
-    <br><br>
-    <?php
-    include 'views/partials/footer.php'
-    ?>
+        <form method="post">
+		<input type="email" name="email" placeholder="Email"/>
+		<input type="password" name="password" placeholder="Password"/>
+		<button name="login" type="submit" >Login</button>
+        </form>
+        <a href="views/general/register.php">Belum memiliki akun?</a>
+	</div>
+
+	<div class="right-box">
+		<span class="signinwith"> Login Menggunakan<br/>Media Sosial</span>
+		<button class="social facebook"> Login menggunakan Facebook </button>
+		<button class="social twitter"> Login menggunakan Twitter </button>
+		<button class="social google"> Login menggunakan Google+ </button>
+	</div>
+</div>
+	<div class="or"> Atau </div>
+
+<?php 
+require_once 'views/partials/footer.php'
+?>
 </body>
