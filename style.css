@@ -1,12 +1,15 @@
+/* Base */
 html,body{
     font-family: "Fira Mono", serif;
     background-color: #F8F8F2;
+    margin: 0px;
   }
   
   .container {
     margin : 0px;
       display :flex;
     background-color: #282A36;
+    width: 100%;
 
   }
   
@@ -65,6 +68,8 @@ html,body{
     font-family: "Fira Mono", serif;
   }
   
+/* Table */
+
   #jobtable {
     font-family: "Fira Mono", serif;
     border-collapse: collapse;
@@ -82,6 +87,7 @@ html,body{
     background-color: #282A36;
   }
   
+/* Hover animation */
   .hover-underline-animation {
       display: inline-block;
       position: relative;
@@ -106,6 +112,7 @@ html,body{
       transform-origin: bottom left;
     }
   
+/* Job Page */
   .key {
   
     display: flex;
