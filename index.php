@@ -41,8 +41,6 @@ require_once 'process/login_query.php'
 		<button class="social google"> Login menggunakan Google+ </button>
 	</div>
 </div>
-	<div class="or"> Atau </div>
-
 <?php 
 require_once 'views/partials/footer.php'
 ?>

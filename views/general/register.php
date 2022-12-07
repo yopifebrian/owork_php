@@ -25,5 +25,6 @@ require_once "../../process/register_query.php";
 		<button class="social google"> Daftar menggunakan Google+ </button>
 	</div>
 </div>
-	<div class="or"> Atau </div>
-</body>
+<?php
+  require_once "../partials/footer.php"
+  ?>

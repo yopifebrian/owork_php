@@ -192,10 +192,10 @@ button[type="submit"]:focus {
   background: #ff5722;
   transition: 0.2s ease;
 }
-.or {
+/* .or {
   position: absolute;
   top: 327px;
-  left: 656px;
+  left: 822px;
   width: 40px;
   height: 40px;
   background: #efefef;
@@ -204,7 +204,7 @@ button[type="submit"]:focus {
   line-height: 40px;
   text-align: center;
   font-size: small;
-}
+} */
 
 .right-box {
   position: absolute;
@@ -258,9 +258,8 @@ footer {
   right: 0;
   background: #111;
   height: auto;
-  width: 100vw;
-
-  padding-top: 40px;
+  width: auto;
+  padding-top: 30px;
   color: rgb(236, 235, 235);
 }
 .footer-content {
@@ -314,8 +313,9 @@ footer {
 .footer-bottom {
   background: #000;
   width: 100vw;
-  padding: 20px;
+  padding-top: 20px;
   padding-bottom: 40px;
+  padding-left: 20px;
   text-align: center;
 }
 .footer-bottom p {
