@@ -23,25 +23,5 @@ if(isset($_POST['job'])) {
     }else{
         echo "<center><h3 class='text-danger'>File too large to upload!</h3></center>";
     }
-
-    try{
-        $mem_id = $_POST['mem_id'];
-        $email = $_POST['email'];
-        $phone = $_POST['phone'];
-        $country = $_POST['country'];
-        $linkedin = $_POST['linkedin'];
-        $porto1 = $_POST['porto1'];
-        $porto2 = $_POST['porto2'];
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "UPDATE profile SET email = '$email',phone = $phone,country = '$country', linkedin = '$linkedin',porto1 = '$porto1',porto2 = '$porto2' WHERE mem_id= $mem_id";
-        $conn->exec($sql);
-        $conn = null;
-        header("location: home.php");
-    }catch(PDOException $e){
-        echo $e->getMessage();
-    }
-    $_SESSION['message']=array("text"=>"User successfully created.","alert"=>"info");
-
 }
 ?>
- 
