@@ -1,5 +1,5 @@
 <?php
-require 'conn.php'; //require connection script
+require_once 'conn.php';
 
 if(isset($_POST['login'])){  
 
@@ -33,7 +33,7 @@ if(isset($_POST['login'])){
             //Provide the user with a login session.
              
             $_SESSION['user'] = $user['user_id'];
-			header('location:views/dashboard.php');;
+			header('location:views/user/dashboard.php');
             
         } else{
             //$validPassword was FALSE. Passwords do not match.]

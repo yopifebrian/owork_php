@@ -1,0 +1,1 @@
+SELECT `title`, `nama_bidang`, `status` FROM appliance LEFT JOIN bidang_campaign ON appliance.id_bidang_campaign=bidang_campaign.id_bidang_campaign LEFT JOIN bidang_keahlian ON bidang_campaign.id_bidang=bidang_keahlian.id_bidang LEFT JOIN campaign ON bidang_campaign.id_campaign=campaign.id_campaign WHERE appliance.user_id=2;

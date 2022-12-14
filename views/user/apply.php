@@ -1,141 +1,109 @@
-<head>
 
+<?php
+session_start();
+$id_bidang_campaign=$_GET['id_bidang_campaign'];
+require_once '../partials/title-meta.php';
+require_once '../../process/conn.php'
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-    * {
-  margin: 0;
-  padding: 0;
+* {
   box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
+}
+
+input, textarea,[type=file] {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+label {
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+}
+
+input[type=submit] {
+  background-color: #04AA6D;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
 }
 
 .container {
-  height: 100vh;
-  width: 100%;
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  background-color: #fcfcfc;
-}
-
-.card {
-  border-radius: 10px;
-  box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.3);
-  width: 600px;
-  height: 260px;
-  background-color: #ffffff;
-  padding: 10px 30px 40px;
-}
-
-.card h3 {
-  font-size: 22px;
-  font-weight: 600;
-  
-}
-
-.drop_box {
-  margin: 10px 0;
-  padding: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  border: 3px dotted #a3a3a3;
   border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
 }
 
-.drop_box h4 {
-  font-size: 16px;
-  font-weight: 400;
-  color: #2e2e2e;
+.col-25 {
+  float: left;
+  width: 25%;
+  margin-top: 6px;
 }
 
-.drop_box p {
-  margin-top: 10px;
-  margin-bottom: 20px;
-  font-size: 12px;
-  color: #a3a3a3;
+.col-75 {
+  float: left;
+  width: 75%;
+  margin-top: 6px;
 }
 
-.btn {
-  text-decoration: none;
-  background-color: #005af0;
-  color: #ffffff;
-  padding: 10px 20px;
-  border: none;
-  outline: none;
-  transition: 0.3s;
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
 }
 
-.btn:hover{
-  text-decoration: none;
-  background-color: #ffffff;
-  color: #005af0;
-  padding: 10px 20px;
-  border: none;
-  outline: 1px solid #010101;
-}
-.form input {
-  margin: 10px 0;
-  width: 100%;
-  background-color: #e2e2e2;
-  border: none;
-  outline: none;
-  padding: 12px 20px;
-  border-radius: 4px;
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .col-25, .col-75, input[type=submit] {
+    width: 100%;
+    margin-top: 0;
+  }
 }
 </style>
 </head>
+<body>
+
 
 <div class="container">
-  <div class="card">
-    <h3>Upload Resume</h3>
-    <div class="drop_box">
-      <header>
-        <h4>Select File here</h4>
-      </header>
-      <p>Files Supported: PDF, TEXT, DOC , DOCX</p>
-      <input type="file" hidden accept=".doc,.docx,.pdf" id="fileID" style="display:none;">
-      <button class="btn">Choose File</button>
+  <form action="../../process/apply_query.php" method="POST" enctype="multipart/form-data">
+    <input type="hidden" name="id_bidang_campaign" value="<?php echo $id_bidang_campaign?>">
+    <div class="row">
+      <div class="col-25">
+        <label for="subject">Form Pengajuan</label>
+      </div>
+      <div class="col-75">
+        <textarea id="subject" name="pesan" placeholder="Write something.." style="height:200px"></textarea>
+      </div>
     </div>
-
-  </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="subject">Upload Resume</label>
+      </div>
+      <div class="col-75">
+        <input type="file" id="subject" name="file" style="height:50px">
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <input type="submit" value="Submit">
+    </div>
+  </form>
 </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-<script>
-    const dropArea = document.querySelector(".drop_box"),
-  button = dropArea.querySelector("button"),
-  dragText = dropArea.querySelector("header"),
-  input = dropArea.querySelector("input");
-let file;
-var filename;
-
-button.onclick = () => {
-  input.click();
-};
-
-input.addEventListener("change", function (e) {
-  var fileName = e.target.files[0].name;
-  let filedata = `
-    <form action="../../process/job_query.php" method="post"
-    enctype="multipart/form-data">
-    <div class="form">
-    <h4>${fileName}</h4>
-    <input type="text" name="pesan"placeholder="Silahkan masukkan pesan pengajuan">
-    <button class="btn">Upload</button>
-    </div>
-    </form>`;
-  dropArea.innerHTML = filedata;
-});
-</script>
+</body>
+</html>
