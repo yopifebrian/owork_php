@@ -24,6 +24,7 @@
 
                     <?php
         require_once 'config.php';
+        session_start();
         $id_campaign     = $_GET['id_campaign'];
         $sql    = "SELECT * FROM campaign WHERE id_campaign='$id_campaign'";
         $result = mysqli_query($conn, $sql);
@@ -32,6 +33,7 @@
 
     <form action="update_campaign_proc.php" method="post">
     <input type="hidden" name="id_campaign" value="<?php echo $data['id_campaign']; ?>" /><br>
+    <input type="hidden" name="id_company" value="<?php echo $_SESSION['user']; ?>" /><br>
   <div class="form-group">
     <label class="control-label col-sm-2" for="title">Judul:</label>
     <div class="col-sm-10">
@@ -42,6 +44,12 @@
     <label class="control-label col-sm-2" for="description">Deskripsi:</label>
     <div class="col-sm-10">
     <textarea name="description" id="description" class="form-control"rows="10" ><?php echo $data['description'] ?></textarea>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="duration">Duration:</label>
+    <div class="col-sm-10">
+    <input type="text" class="form-control"name="duration" id="duration"  value="<?php echo $data['duration']; ?>" placeholder="duration">
     </div>
   </div>
   <div class="form-group">

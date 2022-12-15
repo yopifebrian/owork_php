@@ -52,6 +52,7 @@
                     <div class="page-header clearfix">
                         <h2 class="pull-left">Informasi Campaign</h2>
                         <a href="create_campaign.php" class="btn btn-success pull-right">Tambah Baru</a>
+                        <a href="../process/logout.php" class="btn btn-danger pull-right">LOGOUT</a>
 
                     </div>
                     <?php

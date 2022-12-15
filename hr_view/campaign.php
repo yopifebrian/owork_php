@@ -51,6 +51,7 @@
                 <div class="col-md-12">
                     <div class="page-header clearfix">
                         <h2 class="pull-left">Informasi Recruter</h2>
+                        <a href="create_bidang_campaign.php" class="btn btn-success pull-right">Tambah Baru</a>
 
                     </div>
                     <?php
@@ -68,7 +69,7 @@
                             echo "<tr>";
                             echo "<th>#</th>";
                             echo "<th>Nama Role</th>";
-                            echo "<th>Nama Gaji</th>";
+                            echo "<th>Gaji</th>";
                             echo "<th>Aksi</th>";
                             echo "</tr>";
                             echo "</thead>";
@@ -78,9 +79,9 @@
                                 echo "<tr>";
                                 echo "<td>" . $a . "</td>";
                                 echo "<td>" . $row['nama_bidang'] . "</td>";
-                                echo "<td>" . $row['fee'] . "</td>";
+                                echo "<td>" . 'IDR' . ' ' . number_format(($row['fee']), 2) . "</td>";
                                 echo "<td>";
-                                echo "<a href='form_update.php?id_bidang_campaign=" . $row['id_bidang_campaign'] . "' title='Update Record' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
+                                echo "<a href='update_bidang_campaign.php?id_bidang_campaign=" . $row['id_bidang_campaign'] . "' title='Update Record' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
                                 echo "</td>";
                                 echo "</tr>";
                                 $a++;
@@ -105,7 +106,9 @@
                     appliance.user_id,
                     concat(nama_depan,' ',nama_belakang) as nama , 
                     sekolah_tinggi,
+                    tanggal_interview,
                      status,
+                     pesan,
                      nama_bidang,
                      file_location 
                      FROM appliance 
@@ -129,7 +132,9 @@
                             echo "<th>Nama</th>";
                             echo "<th>Nama Bidang</th>";
                             echo "<th>sekolah_tinggi</th>";
+                            echo "<th>Jadwal Interview</th>";
                             echo "<th>Status</th>";
+                            echo "<th>Pesan</th>";
                             echo "<th>Resume</th>";
 
                             echo "<th>Action</th>";
@@ -143,7 +148,9 @@
                                 echo "<td>" . $row['nama'] . "</td>";
                                 echo "<td>" . $row['nama_bidang'] . "</td>";
                                 echo "<td>" . $row['sekolah_tinggi'] . "</td>";
+                                echo "<td>" . $row['tanggal_interview'] . "</td>";
                                 echo "<td>" . $row['status'] . "</td>";
+                                echo "<td>" . $row['pesan'] . "</td>";
                                 echo "<td>";
                                 echo "<a href='../upload/" . $row['file_name'] . "' title='View Resume' data-toggle='tooltip'><span class='glyphicon glyphicon-eye-open'></span></a>";
                                 echo "</td>";

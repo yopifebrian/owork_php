@@ -35,7 +35,7 @@
 
                 
         // Insert user data into table
-        $result = mysqli_query($mysqli, "INSERT INTO bidang_campaign(jadwal) VALUES('$jadwal')");
+        $result = mysqli_query($conn, "INSERT INTO bidang_campaign(jadwal) VALUES('$jadwal')");
         
         // Show message when user added
         echo "User added successfully. <a href='index.php'>View Users</a>";

@@ -124,9 +124,12 @@ require_once '../../process/conn.php'
         <th>
           Status
         </th>
+        <th>
+          Jadwal Interview
+        </th>
       </tr>
       <?php
-      $sql = "SELECT `title`, `nama_bidang`, `status` FROM appliance LEFT JOIN bidang_campaign ON appliance.id_bidang_campaign=bidang_campaign.id_bidang_campaign LEFT JOIN bidang_keahlian ON bidang_campaign.id_bidang=bidang_keahlian.id_bidang LEFT JOIN campaign ON bidang_campaign.id_campaign=campaign.id_campaign WHERE appliance.user_id=2;";
+      $sql = "SELECT `title`, `nama_bidang`, `status`, `tanggal_interview` FROM appliance LEFT JOIN bidang_campaign ON appliance.id_bidang_campaign=bidang_campaign.id_bidang_campaign LEFT JOIN bidang_keahlian ON bidang_campaign.id_bidang=bidang_keahlian.id_bidang LEFT JOIN campaign ON bidang_campaign.id_campaign=campaign.id_campaign WHERE appliance.user_id=2;";
       $row = $conn->prepare($sql);
       $row->execute();
       $hasil = $row->fetchAll();
@@ -146,6 +149,9 @@ require_once '../../process/conn.php'
           <td>
             <?php echo $isi['status'] ?>
           </td>
+          <td>
+            <?php echo $isi['tanggal_interview'] ?>
+          </td>
         </tr>
       <?php
         $a++;
@@ -155,7 +161,7 @@ require_once '../../process/conn.php'
 
 
     <?php
-    $sql = "SELECT bidang_campaign.id_bidang_campaign as id_bidang_campaign,nama_bidang, campaign.id_campaign as id_campaign, campaign.title as title, campaign.description as description, campaign.duration as duration,fee, company.company_name as company_name FROM campaign left JOIN company ON campaign.id_company= company.id_company LEFT JOIN bidang_campaign ON campaign.id_campaign = bidang_campaign.id_campaign LEFT JOIN bidang_keahlian on bidang_campaign.id_bidang=bidang_keahlian.id_bidang";
+    $sql = "SELECT bidang_campaign.id_bidang_campaign as id_bidang_campaign,nama_bidang, campaign.id_campaign as id_campaign, campaign.title as title, campaign.description as description, campaign.duration as duration,fee, company.company_name as company_name FROM campaign left JOIN company ON campaign.id_company= company.id_company RIGHT JOIN bidang_campaign ON campaign.id_campaign = bidang_campaign.id_campaign LEFT JOIN bidang_keahlian on bidang_campaign.id_bidang=bidang_keahlian.id_bidang";
     $row = $conn->prepare($sql);
     $row->execute();
     $hasil = $row->fetchAll();

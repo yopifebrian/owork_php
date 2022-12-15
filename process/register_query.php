@@ -32,7 +32,7 @@ if (isset($_POST['register'])) {
 				//redirect to another page
 				$_SESSION['message'] = array("text" => "User successfully created.", "alert" => "info");
 				$conn = null;
-				echo '<script>window.location.replace("../../index.php")</script>';
+				echo '<script>window.location.replace("../../views/user/add_profile.php")</script>';
 
 			} else {
 				echo '<script>alert("An error occurred")</script>';
