@@ -29,17 +29,6 @@
         $result = mysqli_query($conn, $sql);
         $data   = mysqli_fetch_array($result);
     ?>
-                    <form action="update_campaign_proc.php" 
-                    
-        method="post">
-        <input type="hidden" name="id_campaign" value="<?php echo $data['id_campaign']; ?>" /><br>
-        <input type="text" name="title" value="<?php echo $data['title']; ?>" placeholder="title"/><br>
-        <textarea name="description" cols="30" rows="10" ><?php echo $data['description'] ?></textarea>
-       
-        <br>
-        
-        <input type="submit" value="Kirim">
-    </form>
 
     <form action="update_campaign_proc.php" method="post">
     <input type="hidden" name="id_campaign" value="<?php echo $data['id_campaign']; ?>" /><br>
@@ -50,16 +39,13 @@
     </div>
   </div>
   <div class="form-group">
-    <label class="control-label col-sm-2" for="pwd">Password:</label>
+    <label class="control-label col-sm-2" for="description">Deskripsi:</label>
     <div class="col-sm-10">
-    <textarea name="description" id="description" class="form-control"rows="20" ><?php echo $data['description'] ?></textarea>
+    <textarea name="description" id="description" class="form-control"rows="10" ><?php echo $data['description'] ?></textarea>
     </div>
   </div>
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
-      <div class="checkbox">
-        <label><input type="checkbox"> Remember me</label>
-      </div>
     </div>
   </div>
   <div class="form-group">
