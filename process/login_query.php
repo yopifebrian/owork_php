@@ -29,12 +29,17 @@ if(isset($_POST['login'])){
         
         //If $validPassword is TRUE, the login has been successful.
         if($validPassword){
-            
+            if($user['role']=="Seeker"){
             //Provide the user with a login session.
              
             $_SESSION['user'] = $user['user_id'];
 			header('location:views/user/dashboard.php');
-            
+            }
+            elseif($user['role']=="Company")
+            {
+                $_SESSION['user'] = $user['user_id'];
+                header('location:hr_view');
+            }
         } else{
             //$validPassword was FALSE. Passwords do not match.]
 			echo $user['password'];

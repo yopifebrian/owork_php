@@ -3,7 +3,7 @@
 $db_host = 'localhost';//bisa juga ditulis IP local dengan 127.0.0.1
 $db_user = 'root';
 $db_pass = '';
-$db_name = 'crud';
+$db_name = 'owork';
 //membuat koneksi ke database
 $conn = new mysqli($db_host, $db_user, $db_pass, $db_name);
 //cek koneksi

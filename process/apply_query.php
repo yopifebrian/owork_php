@@ -4,15 +4,18 @@ session_start();
 require_once 'conn.php';
 if (isset($_POST['pesan'])) {
     $id_appliance = uniqid();
-    $file_name = $id_appliance;
+    $name=$_FILES['file']['name'];
+    $file_type = strtolower(pathinfo($name,PATHINFO_EXTENSION));
+    $file_name = $id_appliance.'.'.$file_type;
     $file_temp = $_FILES['file']['tmp_name'];
     $file_size = $_FILES['file']['size'];
-    $file_type = $_FILES['file']['type'];
+
+    $file_location = "/xampp/htdocs/owork_php/upload/" . $file_name;
+   
     $pesan     = $_POST['pesan'];
     $id_bidang_campaign = $_POST['id_bidang_campaign'];
     $user_id = $_SESSION['user'];
-    $id_appliance = uniqid();
-    $file_location = "/xampp/htdocs/owork_php/upload/" . $file_name;
+    
     if ($file_size < 5242880) {
         if (move_uploaded_file($file_temp, $file_location)) {
             try {

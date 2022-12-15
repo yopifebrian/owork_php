@@ -50,7 +50,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="page-header clearfix">
-                        <h2 class="pull-left">Informasi Campaign</h2>
+                        <h2 class="pull-left">Informasi Recruter</h2>
 
                     </div>
                     <?php
@@ -63,7 +63,28 @@
                     // Attempt select query execution 2
                     session_start();
                     $user_id = $_SESSION['user'];
-                    $sql = "SELECT * FROM campaign where id_company='$user_id'";
+                    $id_campaign = $_GET['id_campaign'];
+                    $sql = "SELECT file_name ,
+                    appliance.id_appliance as id_appliance,
+                    bidang_campaign.id_campaign as id_campaign, 
+                    company.id_company as id_company,
+                    appliance.user_id,
+                    concat(nama_depan,' ',nama_belakang) as nama , 
+                    sekolah_tinggi,
+                     status,
+                     nama_bidang,
+                     file_location 
+                     FROM appliance 
+                     LEFT JOIN profile ON 
+                     appliance.user_id=profile.user_id 
+                     LEFT JOIN resume 
+                     ON appliance.id_appliance=resume.id_appliance 
+                     LEFT JOIN bidang_campaign 
+                     ON appliance.id_bidang_campaign=bidang_campaign.id_bidang_campaign 
+                     LEFT JOIN bidang_keahlian 
+                     ON bidang_campaign.id_bidang=bidang_keahlian.id_bidang 
+                     LEFT JOIN company ON id_company=company.id_company 
+                     WHERE id_company = '$user_id' AND id_campaign = '$id_campaign'";
                     if ($result = mysqli_query($conn, $sql)) {
                         if (mysqli_num_rows($result) > 0) {
                             echo '  <input class="form-control" id="myInput" type="text" placeholder="Search..">';
@@ -71,11 +92,13 @@
                             echo "<thead>";
                             echo "<tr>";
                             echo "<th>#</th>";
-                            echo "<th>Judul</th>";
-                            echo "<th>Deskripsi</th>";
-                            echo "<th>Durasi</th>";
-                            echo "<th>Lihat</th>";
-                            echo "<th>EDIT</th>";
+                            echo "<th>Nama</th>";
+                            echo "<th>Nama Bidang</th>";
+                            echo "<th>sekolah_tinggi</th>";
+                            echo "<th>Status</th>";
+                            echo "<th>Resume</th>";
+
+                            echo "<th>Action</th>";
                             echo "</tr>";
                             echo "</thead>";
                             echo "<tbody id='myTable'>";
@@ -83,16 +106,15 @@
                             while ($row = mysqli_fetch_array($result)) {
                                 echo "<tr>";
                                 echo "<td>" . $a . "</td>";
-                                echo "<td>" . $row['title'] . "</td>";
-                                echo "<td>" . $row['description'] . "</td>";
-                                echo "<td>" . $row['duration'] . " Bulan</td>";
+                                echo "<td>" . $row['nama'] . "</td>";
+                                echo "<td>" . $row['nama_bidang'] . "</td>";
+                                echo "<td>" . $row['sekolah_tinggi'] . "</td>";
+                                echo "<td>" . $row['status'] . "</td>";
                                 echo "<td>";
-                                echo "<a href='campaign.php?id_campaign=" . $row['id_campaign'] . "' title='View campaign' data-toggle='tooltip'><span class='glyphicon glyphicon-eye-open'></span></a>";
+                                echo "<a href='../upload/" . $row['file_name'] . "' title='View Resume' data-toggle='tooltip'><span class='glyphicon glyphicon-eye-open'></span></a>";
                                 echo "</td>";
                                 echo "<td>";
-
-                                echo "<a href='camp_update.php?id_appliance=" . $row['id_campaign'] . "' title='Update Record' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
-
+                                echo "<a href='form_update.php?id_appliance=" . $row['id_appliance'] . "' title='Update Record' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
                                 echo "</td>";
                                 echo "</tr>";
                                 $a++;

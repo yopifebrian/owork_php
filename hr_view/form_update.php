@@ -25,14 +25,14 @@
                     <?php
         require_once 'config.php';
         $id_appliance     = $_GET['id_appliance'];
-        $sql    = "SELECT * FROM appliance WHERE id_appliance=$id_appliance";
+        $sql    = "SELECT id_appliance, status FROM appliance WHERE id_appliance='$id_appliance'";
         $result = mysqli_query($conn, $sql);
         $data   = mysqli_fetch_array($result);
     ?>
-                    <form action="http://localhost/hr_view/update.php" 
+                    <form action="update.php" 
                     
-        method="post" enctype="multipart/form-data">
-        <input type="hidden" name="id_appliance" value="<?php echo $data['id_appliance']; ?>" placeholder="Nama"/><br>
+        method="post">
+        <input type="hidden" name="id_appliance" value="<?php echo $data['id_appliance']; ?>" /><br>
         <input type="text" name="status" value="<?php echo $data['status']; ?>" placeholder="status"/><br>
        
         <br>

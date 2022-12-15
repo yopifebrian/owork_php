@@ -9,7 +9,7 @@ require_once '../../process/conn.php'
     .card {
       display: inline-block;
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-      max-width: 300px;
+      max-width: 250px;
       margin: auto;
       text-align: center;
       font-family: arial;
@@ -79,83 +79,107 @@ require_once '../../process/conn.php'
       /* Used in this example to enable scrolling */
     }
   </style>
+  <style>
+    table {
+      border-collapse: collapse;
+      border-spacing: 0;
+      width: 100%;
+      border: 1px solid #ddd;
+    }
+
+    th,
+    td {
+      text-align: left;
+      padding: 8px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f2f2f2
+    }
+  </style>
 </head>
 
 <body>
   <div class="navbar">
-    <a href="#home">Home</a>
+    <a href="#table">Home</a>
     <a href="profile.php?<?php echo $_SESSION['user'] ?>">Profile</a>
-    <a href="#contact">Contact</a>
-  </div><hr><br><br>
+    <a href="../../process/logout.php" style="float: right;">LOGOUT</a>
+  </div>
+  <hr><br><br>
   <h2>
     Lowongan yang Anda Ajukan
   </h2>
-  <table>
-    <tr>
-      <th>
-        No
-      </th>
-      <th>
-        Campaign
-      </th>
-      <th>
-        Posisi
-      </th>
-      <th>
-        Status
-      </th>
-    </tr>
-  <?php
-  $sql = "SELECT `title`, `nama_bidang`, `status` FROM appliance LEFT JOIN bidang_campaign ON appliance.id_bidang_campaign=bidang_campaign.id_bidang_campaign LEFT JOIN bidang_keahlian ON bidang_campaign.id_bidang=bidang_keahlian.id_bidang LEFT JOIN campaign ON bidang_campaign.id_campaign=campaign.id_campaign WHERE appliance.user_id=2;";
-  $row = $conn->prepare($sql);
-  $row->execute();
-  $hasil = $row->fetchAll();
-  $a = 1;
-  foreach ($hasil as $isi) {
-  ?>
-  <tr>
-  <td style="width:10px">
-    <?php echo $a?>
-  </td>
-  <td>
-    <?php echo $isi['title']?>
-  </td>
-  <td>
-  <?php echo $isi['nama_bidang']?>
-  </td>
-  <td>
-  <?php echo $isi['status'] ?>
-  </td>
-  </tr>
-<?php
-    $a++;
-  }
-?>
-  </table>
+  <div class="table " style="overflow-x:auto;">
+    <table>
+      <tr>
+        <th>
+          No
+        </th>
+        <th>
+          Campaign
+        </th>
+        <th>
+          Posisi
+        </th>
+        <th>
+          Status
+        </th>
+      </tr>
+      <?php
+      $sql = "SELECT `title`, `nama_bidang`, `status` FROM appliance LEFT JOIN bidang_campaign ON appliance.id_bidang_campaign=bidang_campaign.id_bidang_campaign LEFT JOIN bidang_keahlian ON bidang_campaign.id_bidang=bidang_keahlian.id_bidang LEFT JOIN campaign ON bidang_campaign.id_campaign=campaign.id_campaign WHERE appliance.user_id=2;";
+      $row = $conn->prepare($sql);
+      $row->execute();
+      $hasil = $row->fetchAll();
+      $a = 1;
+      foreach ($hasil as $isi) {
+      ?>
+        <tr>
+          <td style="width:10px">
+            <?php echo $a ?>
+          </td>
+          <td>
+            <?php echo $isi['title'] ?>
+          </td>
+          <td>
+            <?php echo $isi['nama_bidang'] ?>
+          </td>
+          <td>
+            <?php echo $isi['status'] ?>
+          </td>
+        </tr>
+      <?php
+        $a++;
+      }
+      ?>
+    </table>
 
 
-  <?php
-  $sql = "SELECT bidang_campaign.id_bidang_campaign as id_bidang_campaign,nama_bidang, campaign.id_campaign as id_campaign, campaign.title as title, campaign.description as description, campaign.duration as duration,fee, company.company_name as company_name FROM campaign left JOIN company ON campaign.id_company= company.id_company LEFT JOIN bidang_campaign ON campaign.id_campaign = bidang_campaign.id_campaign LEFT JOIN bidang_keahlian on bidang_campaign.id_bidang=bidang_keahlian.id_bidang";
-  $row = $conn->prepare($sql);
-  $row->execute();
-  $hasil = $row->fetchAll();
-  $a = 1;
-  foreach ($hasil as $isi) {
-  ?>
-    <div class="card">
-      <img src="https://www.westsideplaza.co.uk/wp-content/uploads/2017/07/300x300.png" alt="<?php echo $isi['title'] ?>">
-      <h1><?php echo $isi['title'] ?></h1>
-      <p class="title"><?php echo $isi['nama_bidang'] ?></p>
-      <p><?php echo $isi['description'] ?></p>
-      <p><?php
+    <?php
+    $sql = "SELECT bidang_campaign.id_bidang_campaign as id_bidang_campaign,nama_bidang, campaign.id_campaign as id_campaign, campaign.title as title, campaign.description as description, campaign.duration as duration,fee, company.company_name as company_name FROM campaign left JOIN company ON campaign.id_company= company.id_company LEFT JOIN bidang_campaign ON campaign.id_campaign = bidang_campaign.id_campaign LEFT JOIN bidang_keahlian on bidang_campaign.id_bidang=bidang_keahlian.id_bidang";
+    $row = $conn->prepare($sql);
+    $row->execute();
+    $hasil = $row->fetchAll();
+    $a = 1;
+    foreach ($hasil as $isi) {
+    ?>
+      <div class="card">
+        <img src="https://www.westsideplaza.co.uk/wp-content/uploads/2017/07/300x300.png" alt="<?php echo $isi['title'] ?>" width="250px">
+        <h3><?php echo $isi['title'] ?></h3>
+        <p class="title"><?php echo $isi['nama_bidang'] ?></p>
+        <p><?php echo $isi['description'] ?></p>
+        <p><?php
 
-          echo 'IDR' . ' ' . number_format(($isi['fee']), 2); ?></p>
-      <div style="margin: 24px 0;">
+            echo 'IDR' . ' ' . number_format(($isi['fee']), 2); ?></p>
+        <div style="margin: 24px 0;">
+        </div>
+        <p><a href="./apply.php?id_bidang_campaign=<?php echo $isi['id_bidang_campaign'] ?>">Apply</a></p>
       </div>
-      <p><a href="./apply.php?id_bidang_campaign=<?php echo $isi['id_bidang_campaign'] ?>">Apply</a></p>
-    </div>
-<?php
-    $a++;
-  }
-?>
-</div>
+    <?php
+      $a++;
+    }
+    ?>
+  </div>
+
+  <?php
+  require_once '../partials/footer.php';
+  ?>
