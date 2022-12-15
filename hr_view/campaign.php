@@ -57,13 +57,47 @@
                     // Include config file
                     require_once "config.php";
 
-
-
-
-                    // Attempt select query execution 2
                     session_start();
                     $user_id = $_SESSION['user'];
                     $id_campaign = $_GET['id_campaign'];
+                    $sql = "SELECT * from bidang_campaign LEFT JOIN bidang_keahlian ON bidang_campaign.id_bidang=bidang_keahlian.id_bidang where id_campaign='$id_campaign'";
+                    if ($result = mysqli_query($conn, $sql)) {
+                        if (mysqli_num_rows($result) > 0) {
+                            echo "<table class='table table-bordered table-striped'>";
+                            echo "<thead>";
+                            echo "<tr>";
+                            echo "<th>#</th>";
+                            echo "<th>Nama Role</th>";
+                            echo "<th>Nama Gaji</th>";
+                            echo "<th>Aksi</th>";
+                            echo "</tr>";
+                            echo "</thead>";
+                            echo "<tbody>";
+                            $a = 1;
+                            while ($row = mysqli_fetch_array($result)) {
+                                echo "<tr>";
+                                echo "<td>" . $a . "</td>";
+                                echo "<td>" . $row['nama_bidang'] . "</td>";
+                                echo "<td>" . $row['fee'] . "</td>";
+                                echo "<td>";
+                                echo "<a href='form_update.php?id_bidang_campaign=" . $row['id_bidang_campaign'] . "' title='Update Record' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
+                                echo "</td>";
+                                echo "</tr>";
+                                $a++;
+                            }
+                            echo "</tbody>";
+                            echo "</table>";
+                            // Free result set
+                            mysqli_free_result($result);
+                        } else {
+                            echo "<p class='lead'><em>No records were found.</em></p>";
+                        }
+                    } else {
+                        echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
+                    }
+
+
+                    // Attempt select query execution 2
                     $sql = "SELECT file_name ,
                     appliance.id_appliance as id_appliance,
                     bidang_campaign.id_campaign as id_campaign, 
@@ -75,8 +109,8 @@
                      nama_bidang,
                      file_location 
                      FROM appliance 
-                     LEFT JOIN profile ON 
-                     appliance.user_id=profile.user_id 
+                     LEFT JOIN profile 
+                     ON appliance.user_id=profile.user_id 
                      LEFT JOIN resume 
                      ON appliance.id_appliance=resume.id_appliance 
                      LEFT JOIN bidang_campaign 

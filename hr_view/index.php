@@ -92,7 +92,7 @@
                                 echo "</td>";
                                 echo "<td>";
 
-                                echo "<a href='camp_update.php?id_appliance=" . $row['id_campaign'] . "' title='Update Record' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
+                                echo "<a href='update_campaign.php?id_campaign=" . $row['id_campaign'] . "' title='Update Record' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
 
                                 echo "</td>";
                                 echo "</tr>";
