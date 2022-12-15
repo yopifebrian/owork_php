@@ -50,6 +50,10 @@
                 <td>Deskripsi</td>
                 <td><input type="text" name="deskripsi"></td>
             </tr>
+            <tr> 
+                <td></td>
+                <td><input type="submit" name="Submit" value="Add"></td>
+            </tr>
             
            
         </table>
